@@ -1,0 +1,3 @@
+name: "Mustache"
+sources:
+  - "mustache.js"

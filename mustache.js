@@ -1,4 +1,19 @@
 /*
+---
+
+name: mustache
+script: mustache.js
+description: mustache.js
+
+requires:
+
+provides: [Mustache]
+
+...
+*/
+
+
+/*
   mustache.js — Logic-less templates in JavaScript
 
   See http://mustache.github.com/ for more info.

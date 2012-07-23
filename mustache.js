@@ -231,12 +231,12 @@ var Mustache = function() {
       }
 
       var value;
-      if(is_kinda_truthy(context[name])) {
+      if(this.context.global_helpers && is_kinda_truthy(this.context.global_helpers[name])) {
+        value = this.context.global_helpers[name];
+      } else if(is_kinda_truthy(context[name])) {
         value = context[name];
       } else if(is_kinda_truthy(this.context[name])) {
         value = this.context[name];
-      } else if(this.context.global_helpers && is_kinda_truthy(this.context.global_helpers[name])) {
-        value = this.context.global_helpers[name];
       }
 
       if(typeof value === "function") {

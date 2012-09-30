@@ -193,7 +193,7 @@ var Mustache;
 
     // support global helpers
     if (value == null) {
-      // climb up the parent tree until we find the global_helpers object
+      // climb up the parent links until the global_helpers object is found
       var global_helpers = undefined;
       var node = this;
       while (!global_helpers) {
@@ -203,7 +203,7 @@ var Mustache;
         else
           global_helpers = node.view.global_helpers;
       }
-      if (global_helpers)
+      if (global_helpers && global_helpers[name])
         value = global_helpers[name];
     }
 
@@ -448,9 +448,13 @@ var Mustache;
     // Make sure there were no open sections when we're done.
     section = sections.pop();
 
-    if (section) {
-      throw new Error("Unclosed section: " + section[1]);
-    }
+    // {{#array}}{{#globalHelper1}}{{#globalHelper2}}{{text}}{{/globalHelper2}}{{/globalHelper1}}{{/array}}
+    //
+    // will cause the following below to error
+    // 
+    // if (section) {
+    //   throw new Error("Unclosed section: " + section[1]);
+    // }
 
     return tree;
   }

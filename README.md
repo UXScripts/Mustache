@@ -1,3 +1,32 @@
+# MooToolsified Mustache
+
+This is a pretty old fork of janl/mustache.js that adds a package.yml file for
+packager compatibility.
+
+The other key difference is it adds support for a `global_helpers` object passed
+in to the `view` argument to be used in any context. An example:
+
+```javascript
+Mustache.render("{{#items}}<p>{{length}}</p>{{/items}}", {
+  items: [
+    [1, 2, 3], [4]
+  ],
+  global_helpers: {
+    length: function() {
+      return this.length;
+    }
+  }
+});
+```
+
+will render:
+
+```html
+<p>3</p><p>1</p>
+```
+
+------------------------
+
 # mustache.js — Logic-less templates with JavaScript
 
 > What could be more logical awesome than no logic at all?
